@@ -1,6 +1,8 @@
 package iLS;
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class iLS {
     public static void main(String[] args) {
@@ -227,7 +229,7 @@ public class iLS {
             score = 0;
             subjectChange = 0;
             for (int i = 1; i < 21; i++) {
-                if (i == 0) {
+                if (i == 1) {
                     System.out.println("_________________________\nSCIENCE PART OF THE QUIZ");
                 } else if (i == 6) {
                     ++subjectChange;
