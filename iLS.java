@@ -1,6 +1,8 @@
 package iLS;
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class iLS {
     public static void main(String[] args) {
@@ -76,11 +78,11 @@ public class iLS {
                         { "This geometric object has no dimension and is represented as a single dot in space \n (a) Line Segment \n (b) Point \n (c) Plane \n (d) Ray",
                                 "a", "b", "c", "d", "b" },
                         // Integers
-                        { "-5 + (-6) \n (a) 11 \n (b) -11 \n (c) 1 \n (d) -1 in", "a", "b", "c", "d", "b" },
+                        { "-5 + (-6) \n (a) 11 \n (b) -11 \n (c) 1 \n (d) -1", "a", "b", "c", "d", "b" },
                         { "-3 x -5 \n (a) 15 \n (b) -15 \n (c) 8 \n (d) -8", "a", "b", "c", "d", "a" },
                         { "-18 / 2 \n (a) -16 \n (b) 16 \n (c) -9 \n (d) 9", "a", "b", "c", "d", "c" },
                         { "-4 - (-3) \n (a) -7 \n (b) -1 \n (c) 1 \n (d) 7", "a", "b", "c", "d", "b" },
-                        { "-(-5) is the same as \n (a) 5^3 \n (b) -5 \n (c) 5 (d) 5^2", "a", "b", "c", "d", "c" },
+                        { "-(-5) is the same as \n (a) 5^3 \n (b) -5 \n (c) 5 \n (d) 5^2", "a", "b", "c", "d", "c" },
                         // Fraction
                         { "2/7 + 3/7 \n (a) 1 \n (b) 5/7 \n (c) 4/7 \n (d) 6/14", "a", "b", "c", "d", "b" },
                         { "in the fraction 6/9, 9 is called? \n (a) Denominator \n (b) Improper fraction \n (c) Mixed Number \n (d) Numerator",
@@ -217,17 +219,16 @@ public class iLS {
                                 "a", "b", "c", "d", "b" },
                 }
         };
-        int score = 0;
-        int subjectChange = 0;
         Scanner scans = new Scanner(System.in);
         // looping
         boolean looping = true;
-        ArrayList<Integer> content = new ArrayList<Integer>();
+
         while (looping) {
-            score = 0;
-            subjectChange = 0;
+            ArrayList<Integer> content = new ArrayList<Integer>();
+            int score = 0;
+            int subjectChange = 0;
             for (int i = 1; i < 21; i++) {
-                if (i == 0) {
+                if (i == 1) {
                     System.out.println("_________________________\nSCIENCE PART OF THE QUIZ");
                 } else if (i == 6) {
                     ++subjectChange;
@@ -238,8 +239,6 @@ public class iLS {
                 } else if (i == 16) {
                     ++subjectChange;
                     System.out.println("_________________________\nHISTORY PART OF THE QUIZ");
-                } else if (i == 21) {
-                    break;
                 }
                 Random rand = new Random();
                 int randomizer = rand.nextInt(25);
@@ -295,22 +294,78 @@ public class iLS {
                 }
             }
             // grading system
+            boolean isDone = true;
             int over = 20;
             double percent = score * 100 / over;
             System.out.println("__________________________");
             if (score == 20) {
                 System.out.println("PROUD OF YOU! \n" + score + "/20 (" + percent + "%) PERFECT SCORE");
-                looping = false;
+                while(isDone){
+                    System.out.println("WOULD YOU LIKE TO RETAKE THE TEST? (Y OR N)");
+                    String response = scans.nextLine().toLowerCase();
+                    if(response.equals("y") || response.equals("yes")){
+                        isDone = false;
+                    }
+                    else if (response.equals("n")|| response.equals("no")){
+                    	looping = false;
+                    	System.out.println("THANK YOU FOR TAKING THE TEST!");
+                        break;
+                    }
+                    else {
+                        System.out.println("Invalid!");
+                    }
+                }
             } else if (score >= 11) {
                 System.out.println("CONGRATS KEEP IT UP\n" + score + "/20 (" + percent + "%) GOOD GRADE");
-                looping = false;
+                while(isDone){
+                    System.out.println("WOULD YOU LIKE TO RETAKE THE TEST? (Y OR N)");
+                    String response = scans.nextLine().toLowerCase();
+                    if(response.equals("y") || response.equals("yes")){
+                        isDone = false;
+                    }
+                    else if (response.equals("n")|| response.equals("no")){
+                    	looping = false;
+                    	System.out.println("THANK YOU FOR TAKING THE TEST!");
+                        break;
+                    }
+                    else {
+                        System.out.println("Invalid!");
+                    }
+                }
             } else if (score == 10) {
                 System.out.println("PASSED CONGRATS \n" + score + "/20 (" + percent + "%) PASSING GRADE");
-                looping = false;
+                while(isDone){
+                    System.out.println("WOULD YOU LIKE TO RETAKE THE TEST? (Y OR N)");
+                    String response = scans.nextLine().toLowerCase();
+                    if(response.equals("y") || response.equals("yes")){
+                        isDone = false;
+                    }
+                    else if (response.equals("n")|| response.equals("no")){
+                    	looping = false;
+                    	System.out.println("THANK YOU FOR TAKING THE TEST!");
+                        break;
+                    }
+                    else {
+                        System.out.println("Invalid!");
+                    }
+                }
             } else if (score >= 0) {
                 System.out.println("FAILED OH NO! \n" + score + "/20 (" + percent + "%) FAILING GRADE");
-                System.out.println("_________________________\nYOU WILL RE-TAKE THE TEST\n\n\n\n");
-                continue;
+                while(isDone){
+                    System.out.println("ARE YOU READY TO TAKE THE TEST? (Y OR N)");
+                    String response = scans.nextLine().toLowerCase();
+                    if(response.equals("y") || response.equals("yes")){
+                        isDone = false;
+                        looping = true;  
+                    }
+                    else if (response.equals("n")|| response.equals("no")){
+                        looping = false;
+                    }
+                    else {
+                        System.out.println("Invalid!");
+                    }
+                }
+
             } else {
                 System.out.println("ERROR!");
             }
